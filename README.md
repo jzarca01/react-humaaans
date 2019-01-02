@@ -2,6 +2,8 @@
 
 Humaaans.com for React
 
+![React-humaaans Demo](https://github.com/jzarca01/react-humaaans/blob/master/react-humaaans.gif)
+
 ## Install
 
 `npm install --save react-humaaans`
@@ -81,6 +83,10 @@ Available components (visible here : https://www.dropbox.com/sh/grfucsjeaxe811s/
 - [x] Standing24
 
 - [x] More Humaaans components coming soon...
+
+## Example
+
+See https://github.com/jzarca01/react-humaaans-example
 
 ## Credits
 
