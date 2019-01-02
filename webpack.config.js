@@ -1,10 +1,6 @@
-const fs = require('fs');
 const webpack = require('webpack');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
-const babelConfig = JSON.parse(
-  fs.readFileSync(path.join(__dirname, './.babelrc'))
-);
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
@@ -19,34 +15,22 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ttf$/,
-        loader: 'url-loader',
-        include: path.resolve(
-          __dirname,
-          '../node_modules/react-native-vector-icons'
-        )
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
       },
       {
-        // Many react-native libraries do not compile their ES6 JS.
-        test: /\.js$/,
-        include: [
-          /node_modules\/react-native-/,
-          path.join(__dirname, '../src')
-        ],
-        exclude: /node_modules\/react-native\//,
-        loader: 'babel-loader',
-        options: {
-          presets: ['react-native'], // Use default babel-presets-react-native
-          plugins: [
-            'syntax-trailing-function-commas', // Fix a extra comma in react-native
-            'transform-flow-strip-types' // Strip flow types in react-native source code.
-          ]
-        }
+        test: /\.css$/,
+        loader: 'style-loader!css-loader?modules',
+        include: /flexboxgrid/
       },
       {
-        test: /\.(gif|jpe?g|png|svg)$/,
-        loader: 'url-loader',
-        query: { name: 'images/[name]-[hash:16].[ext]' }
+        test: /\.(ttf|eot|woff(2)?)(\?[a-z0-9=&.]+)?$/,
+        use: ['file-loader']
+      },
+      {
+        test: /\.svg$/,
+        use: ['file-loader']
       }
     ]
   },
